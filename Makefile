@@ -17,6 +17,9 @@ docker-pull:
 docker-build:
 	docker-compose build
 
+password:
+	docker run --rm registry:2 htpasswd -Bbn registry password > htpasswd
+
 deploy:
 	ssh ${HOST} -p ${PORT} 'rm -rf registry && mkdir registry'
 	scp -P ${PORT} docker-compose.yml ${HOST}:registry/docker-compose.yml
